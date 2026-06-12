@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FridgeMaster - 스마트 냉장고 & 맞춤 레시피 가이드</title>
+    <meta name="description" content="냉장고 속 남은 재료를 입력하고 유통기한을 관리하며, 최적의 맞춤 요리 레시피와 인터랙티브 요리 타이머를 제공하는 스마트 푸드 솔루션">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+    <div class="app-container">
+        <!-- 헤더 영역 -->
+        <header class="app-header">
+            <div class="logo-area">
+                <i data-lucide="refrigerator" class="logo-icon"></i>
+                <h1>FridgeMaster <span>스마트 냉장고</span></h1>
+            </div>
+            <div class="header-controls">
+                <button id="themeToggleBtn" class="control-btn" title="테마 변경">
+                    <i data-lucide="sun" class="theme-icon-sun"></i>
+                    <i data-lucide="moon" class="theme-icon-moon" style="display: none;"></i>
+                </button>
+                <button id="apiSettingsBtn" class="control-btn secondary" title="AI API 키 설정">
+                    <i data-lucide="key"></i>
+                    <span>AI 키</span>
+                </button>
+                <button id="exportDataBtn" class="control-btn secondary" title="데이터 백업 (.json 저장)">
+                    <i data-lucide="download"></i>
+                    <span>백업</span>
+                </button>
+                <label for="importDataFile" class="control-btn secondary clickable-label" title="데이터 복원 (.json 불러오기)">
+                    <i data-lucide="upload"></i>
+                    <span>복원</span>
+                    <input type="file" id="importDataFile" accept=".json" style="display: none;">
+                </label>
+                <button id="resetAppBtn" class="control-btn danger" title="냉장고 초기화">
+                    <i data-lucide="trash-2"></i>
+                    <span>초기화</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- 메인 콘텐츠 영역 -->
+        <main class="app-main-content">
+            <!-- 좌측 영역: 냉장고 인벤토리 -->
+            <section class="fridge-section">
+                <div class="section-card glass">
+                    <div class="section-header">
+                        <h2><i data-lucide="container"></i> 나의 스마트 냉장고</h2>
+                        <span id="fridgeItemCount" class="badge">0개 재료</span>
+                    </div>
+
+                    <!-- 식재료 추가 폼 -->
+                    <form id="addIngredientForm" class="ingredient-form">
+                        <div class="form-row">
+                            <div class="form-group flex-2">
+                                <label for="ingName">재료 이름</label>
+                                <input type="text" id="ingName" placeholder="예: 양파, 계란, 삼겹살" required autocomplete="off">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="ingCategory">카테고리</label>
+                                <select id="ingCategory">
+                                    <option value="vegetable">채소 🥦</option>
+                                    <option value="meat">육류 🍖</option>
+                                    <option value="seafood">해산물 🐟</option>
+                                    <option value="dairy">유제품/달걀 🧀</option>
+                                    <option value="sauce">양념/소스 🧂</option>
+                                    <option value="grain">곡류/빵 🍞</option>
+                                    <option value="other">기타 🏷️</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ingExpDate">유통기한</label>
+                                <input type="date" id="ingExpDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ingStorage">보관 위치</label>
+                                <select id="ingStorage">
+                                    <option value="cold">냉장실 ❄️</option>
+                                    <option value="freeze">냉동실 🧊</option>
+                                    <option value="room">실온/양념 🌡️</option>
+                                </select>
+                            </div>
+                            <div class="form-group btn-align">
+                                <button type="submit" class="primary-btn submit-btn">
+                                    <i data-lucide="plus"></i> 추가
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- 냉장고 보관 탭 컨트롤 -->
+                    <div class="fridge-tabs">
+                        <button class="tab-btn active" data-tab="all">전체보기</button>
+                        <button class="tab-btn" data-tab="cold"><i data-lucide="snowflake" class="tab-icon"></i> 냉장실</button>
+                        <button class="tab-btn" data-tab="freeze"><i data-lucide="thermometer-snowflake" class="tab-icon"></i> 냉동실</button>
+                        <button class="tab-btn" data-tab="room"><i data-lucide="thermometer" class="tab-icon"></i> 실온/양념</button>
+                    </div>
+
+                    <!-- 식재료 인벤토리 리스트 -->
+                    <div class="fridge-shelf-container">
+                        <div id="emptyFridgeMsg" class="empty-state">
+                            <i data-lucide="shopping-basket" class="empty-icon"></i>
+                            <p>냉장고가 비어 있습니다.<br>상단에서 보관할 재료를 추가해 보세요!</p>
+                        </div>
+                        <div id="fridgeShelfGrid" class="fridge-grid">
+                            <!-- JS를 통해 식재료 카드가 생성되는 공간 -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 우측 영역: 레시피 추천 및 목록 -->
+            <section class="recipe-section">
+                <div class="section-card glass">
+                    <div class="section-header">
+                        <h2><i data-lucide="cooking-pot"></i> 맞춤 레시피 추천</h2>
+                        <button id="openRecipeMakerBtn" class="primary-btn secondary-action">
+                            <i data-lucide="clipboard-list"></i> 나만의 레시피 등록
+                        </button>
+                    </div>
+
+                    <!-- 검색 및 정렬 필터 -->
+                    <div class="recipe-filters">
+                        <div class="search-box">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" id="recipeSearchInput" placeholder="요리 이름 또는 재료 검색...">
+</div>
+
+<button id="aiRecommendBtn" class="tab-btn" style="background-color: #4285F4; color: white; margin-top: 10px; margin-bottom: 15px; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%;">
+    ✨ AI 냉장고 파먹기 추천
+</button>
+                        </div>
+                        <div class="sort-box">
+                            <select id="recipeSortSelect">
+                                <option value="match">지금 먹을 수 있는 순 (매칭률높은순)</option>
+                                <option value="parm">냉장고 파먹기 순 (유통기한임박재료)</option>
+                                <option value="time">요리 시간 짧은 순</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- 레시피 리스트 -->
+                    <div class="recipe-list-container">
+                        <div id="recipeGrid" class="recipe-grid">
+                            <!-- JS를 통해 레시피 카드들이 정렬되어 나타남 -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 모달 1: 요리 가이드 & 인터랙티브 타이머 모달 -->
+    <div id="cookingGuideModal" class="modal">
+        <div class="modal-content glass">
+            <span class="close-btn" id="closeCookingModal">&times;</span>
+            <div class="modal-header">
+                <div class="modal-badge-group">
+                    <span id="guideCategory" class="recipe-category-tag">한식</span>
+                    <span id="guideTime" class="recipe-time-tag"><i data-lucide="clock"></i> 20분</span>
+                </div>
+                <h3 id="guideTitle">요리 레시피 제목</h3>
+                <p id="guideDescription" class="recipe-description">레시피 간략한 설명이 들어갑니다.</p>
+            </div>
+            
+            <div class="modal-body">
+                <!-- 요리 재료 리스트 -->
+                <div class="guide-ingredients-section">
+                    <h4><i data-lucide="info"></i> 필요 재료 현황 <span>(냉장고 보유 여부 확인)</span></h4>
+                    <div id="guideIngredientsList" class="guide-ing-list">
+                        <!-- JS가 재료와 보유여부를 체크해 리스트업 -->
+                    </div>
+                </div>
+
+                <!-- 단계별 요리 순서 및 타이머 -->
+                <div class="guide-steps-section">
+                    <h4><i data-lucide="list-ordered"></i> 요리 순서</h4>
+                    <div id="guideStepsList" class="guide-steps-list">
+                        <!-- JS가 요리 단계를 표시 -->
+                    </div>
+                </div>
+
+                <!-- 인터랙티브 타이머 위젯 -->
+                <div id="timerWidget" class="timer-widget" style="display: none;">
+                    <div class="timer-widget-header">
+                        <span id="timerStepTitle">3단계 타이머</span>
+                        <button id="closeTimerBtn" class="close-timer-btn"><i data-lucide="x"></i></button>
+                    </div>
+                    <div class="timer-display">
+                        <span id="timerMinutes">03</span>:<span id="timerSeconds">00</span>
+                    </div>
+                    <div class="timer-progress-container">
+                        <div id="timerProgressBar" class="timer-progress-bar"></div>
+                    </div>
+                    <div class="timer-controls">
+                        <button id="timerStartPauseBtn" class="timer-btn primary"><i data-lucide="play"></i> 시작</button>
+                        <button id="timerResetBtn" class="timer-btn"><i data-lucide="rotate-ccw"></i> 리셋</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="finishCookingBtn" class="primary-btn full-width-btn">요리 완료! 냉장고 재료 소모하기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 모달 2: 커스텀 레시피 추가 모달 -->
+    <div id="recipeMakerModal" class="modal">
+        <div class="modal-content glass">
+            <span class="close-btn" id="closeRecipeMakerModal">&times;</span>
+            <div class="modal-header">
+                <h3><i data-lucide="clipboard-list"></i> 나만의 레시피 추가하기</h3>
+                <p>내가 좋아하는 요리나 특급 레시피를 냉장고에 등록하세요.</p>
+            </div>
+            <form id="customRecipeForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="customRecipeTitle">요리 이름</label>
+                        <input type="text" id="customRecipeTitle" placeholder="예: 엄마표 고추장 돼지 불고기" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customRecipeCategory">분류</label>
+                            <select id="customRecipeCategory">
+                                <option value="한식">한식 🇰🇷</option>
+                                <option value="양식">양식 🇮🇹</option>
+                                <option value="일식">일식 🇯🇵</option>
+                                <option value="중식">중식 🇨🇳</option>
+                                <option value="간편식">간편식/기타 🍔</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="customRecipeTime">소요 시간 (분)</label>
+                            <input type="number" id="customRecipeTime" min="1" max="180" placeholder="예: 20" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customRecipeDesc">한줄 설명</label>
+                        <input type="text" id="customRecipeDesc" placeholder="예: 매콤 달달하고 밥반찬으로 최고인 제육볶음" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customRecipeIngredients">필수 식재료 목록 <span>(쉼표로 구분하여 입력)</span></label>
+                        <input type="text" id="customRecipeIngredients" placeholder="예: 돼지고기, 양파, 대파, 마늘, 고추장" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>요리 단계 (조리 방법) <span>(각 단계별로 작성하고, 타이머가 필요하면 시간을 적어주세요)</span></label>
+                        <div id="makerStepsContainer" class="maker-steps-container">
+                            <div class="maker-step-row">
+                                <span class="step-num">1</span>
+                                <input type="text" class="maker-step-desc" placeholder="예: 돼지고기를 한입 크기로 썰어 양념에 재워둡니다." required>
+                                <input type="number" class="maker-step-time" placeholder="타이머 (분)">
+                            </div>
+                        </div>
+                        <button type="button" id="addMakerStepBtn" class="primary-btn secondary mt-10">
+                            <i data-lucide="plus-circle"></i> 단계 추가
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="primary-btn full-width-btn">새로운 레시피 저장하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- UI/UX를 위한 스크립트 로드 -->
+    <script src="app.js"></script>
+    <script>
+        // Lucide 아이콘 초기화
+        lucide.createIcons();
+    </script>
+</body>
+</html>

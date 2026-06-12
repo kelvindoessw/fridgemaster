@@ -1,0 +1,1335 @@
+/* ==========================================
+   FridgeMaster - Stainless Steel Design System
+   ========================================== */
+
+:root {
+    /* [라이트 모드] 실버 스테인리스 스틸 냉장고 (Silver Stainless Steel) */
+    --bg-gradient: linear-gradient(135deg, #d8dee9 0%, #cbd5e1 50%, #b8c2cc 100%);
+    
+    /* 냉장고 문 리얼 메탈 헤어라인 질감 그라데이션 */
+    --metal-gradient: linear-gradient(135deg, 
+        #f8fafc 0%, 
+        #e2e8f0 15%, 
+        #f1f5f9 30%, 
+        #cbd5e1 55%, 
+        #e2e8f0 70%, 
+        #94a3b8 85%, 
+        #cbd5e1 100%
+    );
+    
+    --card-bg: rgba(248, 250, 252, 0.75);
+    --card-border: rgba(255, 255, 255, 0.8);
+    --card-border-dark: rgba(100, 116, 139, 0.4);
+    
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    
+    /* 버튼용 입체감 있는 크롬 그라데이션 */
+    --chrome-btn: linear-gradient(180deg, #ffffff 0%, #f1f5f9 40%, #e2e8f0 100%);
+    --chrome-btn-hover: linear-gradient(180deg, #ffffff 0%, #e2e8f0 30%, #cbd5e1 100%);
+    
+    /* 프리미엄 컬러 세트 */
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --primary-gradient: linear-gradient(180deg, #6366f1 0%, #4f46e5 100%);
+    
+    --secondary: #e2e8f0;
+    --secondary-hover: #cbd5e1;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --success: #10b981;
+    --warning: #f59e0b;
+    
+    /* 3D 엠보싱 섀도우 효과 */
+    --shadow-beveled: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 1px 0 0 rgba(255, 255, 255, 0.9), 0 10px 30px rgba(0, 0, 0, 0.12);
+    --shadow-sunken: inset 0 2px 5px rgba(0, 0, 0, 0.08), 0 1px 0 rgba(255, 255, 255, 0.6);
+    --font-primary: 'Outfit', 'Noto Sans KR', sans-serif;
+    --glass-blur: blur(8px);
+
+    /* 식재료 카테고리 색상 (메탈 위에서도 잘 보이는 은은한 광택 테두리) */
+    --color-vegetable: #dcfce7;
+    --text-vegetable: #15803d;
+    --color-meat: #fee2e2;
+    --text-meat: #b91c1c;
+    --color-seafood: #e0f2fe;
+    --text-seafood: #0369a1;
+    --color-dairy: #fef9c3;
+    --text-dairy: #a16207;
+    --color-sauce: #f3e8ff;
+    --text-sauce: #7e22ce;
+    --color-grain: #ffedd5;
+    --text-grain: #c2410c;
+    --color-other: #f1f5f9;
+    --text-other: #475569;
+}
+
+body.dark-mode {
+    /* [다크 모드] 최고급 티타늄 스페이스 그레이 냉장고 (Titanium Space Gray) */
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    
+    /* 다크 티타늄 메탈 헤어라인 질감 그라데이션 */
+    --metal-gradient: linear-gradient(135deg, 
+        #334155 0%, 
+        #1e293b 20%, 
+        #334155 40%, 
+        #0f172a 60%, 
+        #1e293b 80%, 
+        #020617 100%
+    );
+    
+    --card-bg: rgba(15, 23, 42, 0.6);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --card-border-dark: rgba(0, 0, 0, 0.5);
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    
+    --chrome-btn: linear-gradient(180deg, #334155 0%, #1e293b 60%, #0f172a 100%);
+    --chrome-btn-hover: linear-gradient(180deg, #475569 0%, #334155 60%, #1e293b 100%);
+    
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-gradient: linear-gradient(180deg, #818cf8 0%, #6366f1 100%);
+    
+    --secondary: #1e293b;
+    --secondary-hover: #334155;
+    --danger: #f87171;
+    --danger-hover: #ef4444;
+    
+    --shadow-beveled: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 1px 0 0 rgba(255, 255, 255, 0.08), 0 10px 30px rgba(0, 0, 0, 0.4);
+    --shadow-sunken: inset 0 2px 5px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    /* 식재료 카테고리 색상 (다크 모드 메탈 대비) */
+    --color-vegetable: rgba(22, 163, 74, 0.2);
+    --text-vegetable: #86efac;
+    --color-meat: rgba(220, 38, 38, 0.2);
+    --text-meat: #fca5a5;
+    --color-seafood: rgba(2, 132, 199, 0.2);
+    --text-seafood: #7dd3fc;
+    --color-dairy: rgba(202, 138, 4, 0.2);
+    --text-dairy: #fde047;
+    --color-sauce: rgba(147, 51, 234, 0.2);
+    --text-sauce: #d8b4fe;
+    --color-grain: rgba(234, 88, 12, 0.2);
+    --text-grain: #ffedd5;
+    --color-other: rgba(100, 116, 139, 0.2);
+    --text-other: #cbd5e1;
+}
+
+/* 2. 레이아웃 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-primary);
+}
+
+body {
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    transition: background 0.5s ease, color 0.3s ease;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 3. 헤더 디자인 (냉장고 도어 최상단 알루미늄 트림 느낌) */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    background: var(--metal-gradient);
+    border: 1px solid var(--card-border);
+    border-bottom: 2px solid var(--card-border-dark);
+    border-radius: 16px;
+    box-shadow: var(--shadow-beveled);
+    position: relative;
+}
+
+.app-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 34px;
+    height: 34px;
+    color: var(--primary);
+    filter: drop-shadow(0 2px 4px rgba(99, 102, 241, 0.3));
+}
+
+.logo-area h1 {
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+.dark-mode .logo-area h1 {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.logo-area h1 span {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: block;
+    margin-top: -2px;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 크롬 코팅 기계식 버튼 느낌의 컨트롤 버튼 */
+.control-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid var(--card-border-dark);
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    background: var(--chrome-btn);
+    color: var(--text-primary);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 2px 4px rgba(0,0,0,0.08);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+    transition: all 0.2s ease;
+}
+.dark-mode .control-btn {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.control-btn:hover {
+    background: var(--chrome-btn-hover);
+    transform: translateY(-2px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 4px 8px rgba(0,0,0,0.12);
+}
+
+.control-btn:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.control-btn.danger {
+    background: linear-gradient(180deg, #f87171 0%, #ef4444 100%);
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.control-btn.danger:hover {
+    background: linear-gradient(180deg, #f87171 0%, #dc2626 100%);
+}
+
+.clickable-label {
+    margin: 0;
+}
+
+/* 4. 메인 콘텐츠 레이아웃 */
+.app-main-content {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (max-width: 1024px) {
+    .app-main-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 냉장고 문 짝 1개 느낌의 3D 메탈 도어 패널 */
+.section-card {
+    background: var(--metal-gradient);
+    border: 1px solid var(--card-border);
+    border-right: 2px solid var(--card-border-dark);
+    border-bottom: 2px solid var(--card-border-dark);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: var(--shadow-beveled);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: calc(100vh - 150px);
+    position: relative;
+}
+
+/* 메탈 하이라이팅 반사광 */
+.section-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 25%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    border-radius: 24px;
+}
+.dark-mode .section-card::before {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--card-border-dark);
+    padding-bottom: 15px;
+    position: relative;
+}
+
+.section-header h2 {
+    font-size: 21px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+}
+.dark-mode .section-header h2 {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.badge {
+    background: var(--primary);
+    background: var(--primary-gradient);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(99, 102, 241, 0.2);
+}
+
+/* 5. 식재료 입력 폼 (냉장고 내부 트레이 매립형 수납장 느낌) */
+.ingredient-form {
+    background: var(--shadow-sunken);
+    background-color: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 14px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: var(--shadow-sunken);
+}
+.dark-mode .ingredient-form {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.03);
+}
+
+.form-row {
+    display: flex;
+    gap: 12px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.form-group.flex-2 {
+    flex: 2;
+}
+
+.form-group.flex-1 {
+    flex: 1;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: -0.2px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border-dark);
+    background: rgba(255, 255, 255, 0.45);
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+.dark-mode .form-group input,
+.dark-mode .form-group select {
+    background: rgba(15, 23, 42, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05), 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+.dark-mode .form-group input:focus,
+.dark-mode .form-group select:focus {
+    background: rgba(15, 23, 42, 0.95);
+}
+
+.form-group.btn-align {
+    justify-content: flex-end;
+}
+
+/* 3D 둥근 파란색 주요 버튼 */
+.primary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--primary-gradient);
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-bottom: 2.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 11px 18px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(99, 102, 241, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transition: all 0.1s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.primary-btn:active {
+    transform: translateY(1.5px);
+    border-bottom-width: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.primary-btn.secondary-action {
+    padding: 8px 12px;
+    font-size: 13px;
+    border-radius: 8px;
+    background: var(--chrome-btn);
+    color: var(--text-primary);
+    border: 1px solid var(--card-border-dark);
+}
+
+.primary-btn.secondary-action:hover {
+    background: var(--chrome-btn-hover);
+    color: var(--text-primary);
+}
+
+.primary-btn.secondary {
+    background: var(--chrome-btn);
+    color: var(--text-primary);
+    border-color: var(--card-border-dark);
+}
+
+.primary-btn.secondary:hover {
+    background: var(--chrome-btn-hover);
+}
+
+.primary-btn.full-width-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
+}
+
+/* 6. 냉장고 보관실 탭 (메탈 홈에 끼워진 슬라이더 느낌) */
+.fridge-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--shadow-sunken);
+    background-color: rgba(0,0,0,0.04);
+    border-radius: 10px;
+    padding: 4px;
+    box-shadow: var(--shadow-sunken);
+}
+.dark-mode .fridge-tabs {
+    background-color: rgba(0,0,0,0.25);
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    padding: 9px 14px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+}
+
+/* 활성화 시 은빛 광택 돌출된 효과 */
+.tab-btn.active {
+    color: var(--primary);
+    background: var(--chrome-btn);
+    box-shadow: inset 0 1px 0 #fff, 0 2px 5px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--card-border-dark);
+}
+.dark-mode .tab-btn.active {
+    background: var(--chrome-btn);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 2px 5px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.tab-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* 7. 냉장고 선반 & 재료 카드 (매립 수납 트레이 느낌) */
+.fridge-shelf-container {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 480px;
+    padding-right: 4px;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    gap: 15px;
+    background: rgba(0, 0, 0, 0.01);
+    border: 1px dashed var(--card-border-dark);
+    border-radius: 12px;
+}
+
+.empty-icon {
+    width: 48px;
+    height: 48px;
+    stroke-width: 1.5;
+    color: var(--text-secondary);
+}
+
+.fridge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+}
+
+/* 식재료 개별 카드 (냉장고 내부 유리 칸막이 느낌 - 투명 유광 재질) */
+.ingredient-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-right-color: rgba(0, 0, 0, 0.08);
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    padding: 12px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 115px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow: hidden;
+}
+.dark-mode .ingredient-card {
+    background: rgba(30, 41, 59, 0.65);
+    border-color: rgba(255, 255, 255, 0.1);
+    border-right-color: rgba(0, 0, 0, 0.3);
+    border-bottom-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* 호버 시 튀어나오는(엠보싱) 입체감 */
+.ingredient-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: var(--primary);
+}
+.dark-mode .ingredient-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.category-dot {
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 6px;
+    font-weight: 800;
+}
+
+.delete-ing-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 40%;
+    transition: all 0.2s ease;
+}
+
+.delete-ing-btn:hover {
+    color: var(--danger);
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.delete-ing-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2.5;
+}
+
+.card-mid {
+    margin: 8px 0;
+}
+
+.ing-card-name {
+    font-weight: 800;
+    font-size: 15px;
+    word-break: break-all;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.storage-badge {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    background: rgba(0, 0, 0, 0.04);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+.dark-mode .storage-badge {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Refrigerator LED Status Lights (유통기한 상태 스마트 알림 등) */
+.dday-badge {
+    font-size: 10.5px;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 20px;
+    color: white;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.dday-badge.urgent {
+    background: linear-gradient(180deg, #ef4444 0%, #b91c1c 100%);
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    animation: pulseGlow 1.2s infinite alternate;
+}
+
+.dday-badge.warning {
+    background: linear-gradient(180deg, #f59e0b 0%, #b45309 100%);
+    box-shadow: 0 0 6px rgba(245, 158, 11, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.dday-badge.safe {
+    background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.dday-badge.expired {
+    background: #090d16;
+    color: #f87171;
+    border-color: #ef4444;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 4px rgba(239, 68, 68, 0.4);
+        opacity: 0.9;
+    }
+    100% {
+        box-shadow: 0 0 12px rgba(239, 68, 68, 1);
+        opacity: 1;
+    }
+}
+
+/* 8. 레시피 피드 */
+.recipe-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.search-box {
+    width: 100%;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 11px 14px 11px 38px;
+    border-radius: 10px;
+    border: 1px solid var(--card-border-dark);
+    background: rgba(255, 255, 255, 0.45);
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+.dark-mode .search-box input {
+    background: rgba(15, 23, 42, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.search-box input:focus {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.9);
+}
+.dark-mode .search-box input:focus {
+    background: rgba(15, 23, 42, 0.9);
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: var(--text-secondary);
+}
+
+.sort-box {
+    width: 100%;
+}
+
+.sort-box select {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--card-border-dark);
+    background: rgba(255, 255, 255, 0.45);
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+.dark-mode .sort-box select {
+    background: rgba(15, 23, 42, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.recipe-list-container {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 600px;
+    padding-right: 4px;
+}
+
+.recipe-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 레시피 카드 (매립형 와이드 태블릿 디스플레이 터치 영역 느낌) */
+.recipe-card {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-right-color: rgba(0,0,0,0.08);
+    border-bottom-color: rgba(0,0,0,0.08);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.dark-mode .recipe-card {
+    background: rgba(15, 23, 42, 0.5);
+    border-color: rgba(255, 255, 255, 0.05);
+    border-right-color: rgba(0, 0, 0, 0.2);
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.recipe-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.85);
+}
+.dark-mode .recipe-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+    background: rgba(15, 23, 42, 0.85);
+}
+
+.recipe-img-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    background: var(--metal-gradient);
+    border: 1px solid var(--card-border-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sunken);
+}
+
+.recipe-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.recipe-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.recipe-card-header h3 {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.matching-score-badge {
+    font-size: 11.5px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 20px;
+    color: white;
+    background: #64748b;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.matching-score-badge.high {
+    background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+}
+
+.matching-score-badge.mid {
+    background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+}
+
+.recipe-card-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 4px 0 8px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.recipe-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recipe-meta-tags {
+    display: flex;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+.recipe-meta-tags span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.recipe-ingredients-preview {
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+}
+
+.ing-preview-label {
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.ing-have {
+    color: var(--success);
+    font-weight: 600;
+}
+
+.ing-missing {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+/* 냉장고 파먹기 정렬 가산점 마크 */
+.parm-indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-bottom-left-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* 9. 모달창 시스템 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 냉장고 내부 3D 선반 유리가 열리며 앞으로 튀어나오는 느낌 */
+.modal-content {
+    background: var(--metal-gradient);
+    border: 1px solid var(--card-border);
+    border-right: 2px solid var(--card-border-dark);
+    border-bottom: 2px solid var(--card-border-dark);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    box-shadow: var(--shadow-beveled), 0 30px 60px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px) scale(0.95); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: var(--danger);
+}
+
+.modal-header {
+    padding: 24px;
+    border-bottom: 1px solid var(--card-border-dark);
+}
+
+.modal-header h3 {
+    font-size: 23px;
+    font-weight: 900;
+}
+
+.modal-header p {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+.modal-badge-group {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.recipe-category-tag {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary);
+}
+
+.recipe-time-tag {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.recipe-description {
+    font-size: 14.5px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    line-height: 1.4;
+}
+
+.modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--card-border-dark);
+}
+
+/* 모달 내부 콘텐츠 스타일 */
+.guide-ingredients-section h4,
+.guide-steps-section h4 {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.guide-ingredients-section h4 span {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.guide-ing-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.guide-ing-item {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--card-border-dark);
+    background: rgba(255,255,255,0.2);
+}
+
+.guide-ing-item.have {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.guide-ing-item.have::after {
+    content: "✓";
+    font-weight: 900;
+}
+
+.guide-ing-item.missing {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+    border-color: rgba(239, 68, 68, 0.25);
+}
+
+.guide-ing-item.missing::after {
+    content: "+";
+    font-weight: 900;
+}
+
+/* 단계별 리스트 */
+.guide-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.guide-step-card {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.dark-mode .guide-step-card {
+    background: rgba(15, 23, 42, 0.3);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.step-badge {
+    background: var(--chrome-btn);
+    color: var(--text-primary);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12.5px;
+    font-weight: 800;
+    flex-shrink: 0;
+    margin-top: 2px;
+    border: 1px solid var(--card-border-dark);
+}
+
+.step-card-text {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+.step-timer-launch-btn {
+    border: 1px solid var(--card-border-dark);
+    background: var(--chrome-btn);
+    color: var(--primary);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+.step-timer-launch-btn:hover {
+    background: var(--chrome-btn-hover);
+    transform: scale(1.03);
+}
+
+/* 10. 타이머 위젯 UI */
+.timer-widget {
+    background: var(--metal-gradient);
+    border: 2px solid var(--primary);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    box-shadow: var(--shadow-beveled), 0 10px 25px rgba(99, 102, 241, 0.25);
+    margin-top: 20px;
+    animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popUp {
+    from { transform: translateY(30px) scale(0.95); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.timer-widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timer-widget-header span {
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--primary);
+}
+
+.close-timer-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 40%;
+}
+
+.close-timer-btn:hover {
+    color: var(--danger);
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.timer-display {
+    font-size: 44px;
+    font-weight: 900;
+    font-family: 'Outfit', sans-serif;
+    text-align: center;
+    letter-spacing: 2px;
+    color: var(--text-primary);
+}
+
+.timer-progress-container {
+    width: 100%;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.timer-progress-bar {
+    width: 100%;
+    height: 100%;
+    background: var(--primary-gradient);
+    transition: width 0.1s linear;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.timer-btn {
+    border: 1px solid var(--card-border-dark);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--chrome-btn);
+    color: var(--text-primary);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+.timer-btn:hover {
+    background: var(--chrome-btn-hover);
+}
+
+.timer-btn.primary {
+    background: var(--primary-gradient);
+    color: white;
+    border-color: rgba(0,0,0,0.1);
+}
+
+.timer-btn.primary:hover {
+    background: linear-gradient(180deg, #818cf8 0%, #4f46e5 100%);
+}
+
+/* 11. 커스텀 레시피 생성기 UI */
+.maker-steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.maker-step-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.maker-step-row .step-num {
+    font-weight: 900;
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+}
+
+.maker-step-desc {
+    flex: 3;
+}
+
+.maker-step-time {
+    flex: 1;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
